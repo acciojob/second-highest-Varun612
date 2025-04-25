@@ -10,7 +10,28 @@
 	<script>
 		function secondHighest(arr) {
 			//Write your code here
-			
+			if (arr.length < 2) return -Infinity;
+
+  // Sort in descending order
+  for (let i = 0; i < arr.length; i++) {
+    let curr = arr[i];
+    let j = i - 1;
+    while (j >= 0 && arr[j] < curr) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+    arr[j + 1] = curr;
+  }
+
+  // Check for second unique highest
+  const highest = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] !== highest) {
+      return arr[i]; // Found second highest
+    }
+  }
+
+  return -Infinity; // All elements are same
 		}
 
 		function Main() {
